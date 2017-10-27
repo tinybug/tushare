@@ -5,7 +5,7 @@ import tushare.stock.trading as td
 def get_price(code, cost, count):
     data = td.get_realtime_quotes(code).to_dict(orient='records')[0]
     profit = (float(data['price']) - cost) * count;
-    print '%s %s %s' % (data['name'], data['price'], profit)
+    print '{:>12} {:>12} {:>12} {:>12}'.format(data['name'].encode('utf-8'), data['price'], float(data['price'])-float(data['pre_close']), profit)
     return profit
     
 if __name__ == "__main__":
@@ -14,10 +14,10 @@ if __name__ == "__main__":
     total += get_price('002275', 18.337, 300)
     total += get_price('601398', 6.245, 1000)
     total += get_price('603515', 46.411, 100)
-    total += get_price('002745', 52.401, 100)
+    total += get_price('002745', 53.426, 200)
     total += get_price('000538', 105.453, 100)
     total += get_price('603899', 23.127, 300)
-    total += get_price('603040', 85.857, 200)
+    total += get_price('603040', 88.089, 300)
     print 'total profit: %s' % total
 
     print '-----------------------------------'
